@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Obada Alhalaybeh — Web Developer & Web Designer Portfolio"
+    />
+    <title>Obada Alhalaybeh | Portfolio</title>
+
+    <style>
+      /* -----------------------------
+      Theme (Blue + White, modern “web” look)
+    ------------------------------*/
+      :root {
+        --bg: #f7fbff;
+        --surface: #ffffff;
+        --surface-2: #f1f7ff;
+
+        --text: #0b1220;
+        --muted: #4b5563;
+
+        --primary: #2563eb; /* blue */
+        --primary-2: #1d4ed8; /* deeper blue */
+        --accent: #06b6d4; /* cyan accent */
+        --border: rgba(15, 23, 42, 0.1);
+
+        --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+        --radius: 18px;
+
+        --max: 1100px;
+      }
+
+      /* Optional dark mode */
+      [data-theme="dark"] {
+        --bg: #050b18;
+        --surface: rgba(255, 255, 255, 0.06);
+        --surface-2: rgba(255, 255, 255, 0.09);
+
+        --text: #e5e7eb;
+        --muted: #a3a3a3;
+
+        --primary: #60a5fa;
+        --primary-2: #3b82f6;
+        --accent: #22d3ee;
+        --border: rgba(255, 255, 255, 0.14);
+
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(
+            1200px 600px at 10% -10%,
+            rgba(37, 99, 235, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 90% 0%,
+            rgba(6, 182, 212, 0.18),
+            transparent 60%
+          ),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 22px;
+      }
+
+      /* Top nav */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 14px 22px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        box-shadow: var(--shadow);
+        font-weight: 800;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .nav-links a {
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+        border-color: var(--border);
+        background: var(--surface);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 600;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        box-shadow: 0 6px 16px rgba(2, 6, 23, 0.06);
+        cursor: pointer;
+        user-select: none;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-primary {
+        border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+      }
+      .btn-ghost {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 44px 0 10px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .card-pad {
+        padding: 22px;
+      }
+
+      .badge {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 13px;
+        color: var(--primary-2);
+        background: color-mix(in srgb, var(--primary) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border));
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+      .title {
+        font-size: clamp(28px, 3vw, 44px);
+        line-height: 1.1;
+        margin: 14px 0 10px;
+        letter-spacing: -0.6px;
+      }
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        max-width: 64ch;
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .quick {
+        display: grid;
+        gap: 12px;
+        height: 100%;
+      }
+      .mini {
+        background: linear-gradient(180deg, var(--surface), var(--surface-2));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      .mini h3 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .mini p {
+        margin: 0;
+        font-weight: 650;
+      }
+      .mini a {
+        color: var(--primary);
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+      }
+
+      /* Sections */
+      section {
+        padding: 26px 0;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: -0.2px;
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .col-6 {
+        grid-column: span 6;
+      }
+      .col-4 {
+        grid-column: span 4;
+      }
+      .col-12 {
+        grid-column: span 12;
+      }
+      @media (max-width: 900px) {
+        .col-6,
+        .col-4 {
+          grid-column: span 12;
+        }
+      }
+
+      .item {
+        padding: 18px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      }
+      .item h3 {
+        margin: 0 0 6px;
+        font-size: 16px;
+        letter-spacing: -0.2px;
+      }
+      .item p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 6px 9px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--muted);
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        padding-left: 18px;
+      }
+      .timeline:before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        bottom: 6px;
+        width: 2px;
+        background: color-mix(in srgb, var(--primary) 25%, var(--border));
+        border-radius: 999px;
+      }
+      .t-item {
+        position: relative;
+        padding: 12px 14px 12px 14px;
+        margin: 8px 0;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+      .t-item:before {
+        content: "";
+        position: absolute;
+        left: -18px;
+        top: 18px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border: 2px solid var(--bg);
+        box-shadow: 0 8px 18px rgba(2, 6, 23, 0.12);
+      }
+      .t-meta {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0 0 4px;
+      }
+      .t-title {
+        margin: 0;
+        font-weight: 750;
+      }
+
+      footer {
+        margin-top: 18px;
+        padding: 22px 0 50px;
+        color: var(--muted);
+        font-size: 14px;
+        border-top: 1px solid var(--border);
+        background: color-mix(in srgb, var(--bg) 86%, transparent);
+      }
+
+      /* Small helper */
+      .muted {
+        color: var(--muted);
+      }
+      .sep {
+        height: 1px;
+        background: var(--border);
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo" aria-label="OA logo">OA</div>
+          <div>
+            <div style="font-size: 14px; line-height: 1.1">
+              Obada Alhalaybeh
+            </div>
+            <div style="font-size: 12px; color: var(--muted); line-height: 1.1">
+              Web Developer • Web Designer
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#cv">CV</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#certs">Certifications</a>
+          <a href="#services">Freelancing</a>
+          <button
+            id="themeBtn"
+            class="btn btn-ghost"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            🌙
+          </button>
+          <a class="btn btn-primary" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <main class="container">
+      <!-- HERO -->
+      <header class="hero" id="top">
+        <div class="hero-grid">
+          <div class="card">
+            <div class="card-pad">
+              <span class="badge"
+                >💼 Freelancing & Digital Business Portfolio</span
+              >
+              <h1 class="title">
+                Building modern, responsive websites and clean UI experiences.
+              </h1>
+              <p class="subtitle">
+                I’m a <strong>Computer Science</strong> student at
+                <strong>HTU</strong> focused on
+                <strong>web development</strong> and
+                <strong>web design</strong>. I enjoy creating user-friendly web
+                applications and professional website layouts.
+              </p>
+
+              <div class="cta-row">
+                <a class="btn btn-primary" href="#projects">View Projects</a>
+                <a
+                  class="btn"
+                  href="https://www.linkedin.com/in/obada-alhalaybeh-5b2778293/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >LinkedIn</a
+                >
+                <a class="btn" href="mailto:oalhalaibh@gmail.com">Email Me</a>
+              </div>
+
+              <div class="sep"></div>
+              <p class="muted" style="margin: 0; font-size: 13px">
+                Theme: Blue + White (trust, professionalism, tech) with a cyan
+                accent for a modern “digital” feel.
+              </p>
+            </div>
+          </div>
+
+          <aside class="quick">
+            <div class="mini">
+              <h3>Current Focus</h3>
+              <p>Cloud Computing (Certification in progress)</p>
+            </div>
+            <div class="mini">
+              <h3>Primary Skills</h3>
+              <p>HTML • CSS • JavaScript • UI/UX</p>
+            </div>
+            <div class="mini">
+              <h3>Contact</h3>
+              <p>
+                <a href="mailto:oalhalaibh@gmail.com">oalhalaibh@gmail.com</a>
+              </p>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-head">
+          <h2>1) About Me</h2>
+          <p>Who I am and what I want to achieve</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-12">
+            <h3>Introduction</h3>
+            <p>
+              I’m Obada Alhalaybeh, a Computer Science student at HTU. I’m
+              interested in building websites and web applications that look
+              great and work smoothly. My goal is to grow into a professional
+              freelancer and provide web development and web design services for
+              clients, startups, and small businesses.
+            </p>
+            <div class="tags">
+              <span class="tag">Web Development</span>
+              <span class="tag">Web Design</span>
+              <span class="tag">Responsive UI</span>
+              <span class="tag">Freelancing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CV -->
+      <section id="cv">
+        <div class="section-head">
+          <h2>2) Resume / CV</h2>
+          <p>Quick overview (you can expand anytime)</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-6">
+            <h3>Education</h3>
+            <p>
+              <strong>Bachelor’s in Computer Science</strong><br />HTU
+              (Al-Hussein Technical University)
+            </p>
+          </div>
+
+          <div class="item col-6">
+            <h3>Career Objective</h3>
+            <p>
+              To work as a freelance web developer and web designer, delivering
+              professional and creative digital solutions while continuously
+              improving my technical expertise.
+            </p>
+          </div>
+
+          <div class="item col-12">
+            <h3>Core Strengths</h3>
+            <p>
+              Problem-solving mindset, strong attention to detail, and
+              continuous learning. I like turning ideas into clear layouts,
+              interactive interfaces, and user-friendly web experiences.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-head">
+          <h2>3) Educational Projects</h2>
+          <p>At least 3 projects (AB requirement)</p>
+        </div>
+
+        <div class="grid">
+          <article class="item col-4">
+            <h3>Employee Calculator App</h3>
+            <p>
+              A web-based calculator that computes employee salary outputs based
+              on inputs like working hours and rates.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="sep"></div>
+            <p class="muted">
+              <strong>Role:</strong> Full development •
+              <strong>Outcome:</strong> Accurate calculations + clean UI
+            </p>
+          </article>
+
+          <article class="item col-4">
+            <h3>Book Selling Web App</h3>
+            <p>
+              A web app concept for browsing, searching, and viewing books
+              available for sale with a user-friendly layout.
+            </p>
+            <div class="tags">
+              <span class="tag">Front-end</span>
+              <span class="tag">UI Design</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="sep"></div>
+            <p class="muted">
+              <strong>Role:</strong> Developer & Designer •
+              <strong>Outcome:</strong> Improved UX + clear navigation
+            </p>
+          </article>
+
+          <article class="item col-4">
+            <h3>Pet Store Prototype Design</h3>
+            <p>
+              A prototype for a pet store website showcasing products and
+              services with modern visual hierarchy and flow.
+            </p>
+            <div class="tags">
+              <span class="tag">Prototype</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">Layout</span>
+            </div>
+            <div class="sep"></div>
+            <p class="muted">
+              <strong>Role:</strong> UI/UX Designer •
+              <strong>Outcome:</strong> Professional look + easy browsing
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-head">
+          <h2>4) Skills</h2>
+          <p>Technical + soft skills</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-6">
+            <h3>Technical Skills</h3>
+            <div class="tags" aria-label="technical skills">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Responsive Web Design</span>
+              <span class="tag">UI/UX Principles</span>
+              <span class="tag">Prototyping</span>
+            </div>
+          </div>
+
+          <div class="item col-6">
+            <h3>Soft Skills</h3>
+            <div class="tags" aria-label="soft skills">
+              <span class="tag">Communication</span>
+              <span class="tag">Teamwork</span>
+              <span class="tag">Time Management</span>
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Adaptability</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATIONS -->
+      <section id="certs">
+        <div class="section-head">
+          <h2>5) Certifications & Awards</h2>
+          <p>Completed + currently studying</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-6">
+            <h3>Web Development Certificate</h3>
+            <p>
+              Completed certification covering core web development
+              fundamentals.
+            </p>
+          </div>
+          <div class="item col-6">
+            <h3>Cloud Computing (In Progress)</h3>
+            <p>
+              Currently studying cloud computing concepts and tools for modern
+              deployment and scalability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education">
+        <div class="section-head">
+          <h2>6) Education</h2>
+          <p>Academic background</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-12 timeline">
+            <div class="t-item">
+              <p class="t-meta">HTU</p>
+              <p class="t-title">Bachelor’s in Computer Science</p>
+              <p class="muted" style="margin: 6px 0 0">
+                Focused on programming, problem solving, and building web
+                applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFERENCES -->
+      <section id="references">
+        <div class="section-head">
+          <h2>7) Testimonials / References</h2>
+          <p>
+            AB requirement (use “available upon request” if you don’t have
+            quotes yet)
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-12">
+            <h3>References</h3>
+            <p>References are available upon request.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FREELANCING -->
+      <section id="services">
+        <div class="section-head">
+          <h2>8) Personal Work & Freelancing Services</h2>
+          <p>What I can offer clients</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-4">
+            <h3>Website Design</h3>
+            <p>
+              Modern landing pages and multi-page site layouts that match a
+              brand and convert visitors.
+            </p>
+          </div>
+          <div class="item col-4">
+            <h3>Front-End Development</h3>
+            <p>
+              Responsive, fast, and accessible pages using HTML, CSS, and
+              JavaScript.
+            </p>
+          </div>
+          <div class="item col-4">
+            <h3>Prototyping & UI/UX</h3>
+            <p>
+              Wireframes and prototypes to validate ideas before development.
+            </p>
+          </div>
+
+          <div class="item col-12" id="design">
+            <h3>Portfolio Design Explanation (Theme & Palette)</h3>
+            <p>
+              <strong>Colors:</strong> Blue and white were chosen to reflect
+              professionalism, trust, and a technology-focused identity. A cyan
+              accent adds a modern digital look. <br />
+              <strong>Style:</strong> Minimal, clean layout with clear
+              typography and cards for easy reading. <br />
+              <strong>Layout:</strong> Section-based structure so
+              recruiters/clients can quickly find skills, projects, and
+              services.
+            </p>
+            <div class="tags">
+              <span class="tag">Primary: Blue</span>
+              <span class="tag">Accent: Cyan</span>
+              <span class="tag">Surface: White</span>
+              <span class="tag">Modern Cards</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Let’s work together</p>
+        </div>
+
+        <div class="grid">
+          <div class="item col-6">
+            <h3>Email</h3>
+            <p>
+              <a href="mailto:oalhalaibh@gmail.com">oalhalaibh@gmail.com</a>
+            </p>
+          </div>
+          <div class="item col-6">
+            <h3>LinkedIn</h3>
+            <p>
+              <a
+                href="https://www.linkedin.com/in/obada-alhalaybeh-5b2778293/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                linkedin.com/in/obada-alhalaybeh-5b2778293
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container" style="padding: 0">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 10px;
+              flex-wrap: wrap;
+            "
+          >
+            <div>© <span id="year"></span> Obada Alhalaybeh • Portfolio</div>
+            <a class="btn" href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Theme toggle (remembers preference)
+      const root = document.documentElement;
+      const btn = document.getElementById("themeBtn");
+      const saved = localStorage.getItem("theme");
+      if (saved) root.setAttribute("data-theme", saved);
+
+      function iconFor(theme) {
+        return theme === "dark" ? "☀️" : "🌙";
+      }
+      btn.textContent = iconFor(root.getAttribute("data-theme"));
+
+      btn.addEventListener("click", () => {
+        const current = root.getAttribute("data-theme");
+        const next = current === "dark" ? "" : "dark";
+        if (next) root.setAttribute("data-theme", next);
+        else root.removeAttribute("data-theme");
+        localStorage.setItem("theme", next);
+        btn.textContent = iconFor(next);
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
